@@ -1,0 +1,53 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+//문자열 자를 단위 1~문자열/2
+//문자열 단위별로 문자열 압축
+
+int solution(string s) {
+    int len = s.length();
+    int answer = len;
+
+//i개 단위로 자르기
+    for(int i = 1; i <= (len/2); i++){
+        
+        //i개 단위 잘라 압축후 문자열
+        string result = "";
+        
+        //자를 단위
+        string tmp = s.substr(0, i);
+        
+        int cnt = 1;
+
+        for(int j = i; j <= len; j+=i){//앞에 제외하고 검사
+         
+            if(tmp == s.substr(j, i)){
+                cnt++;//j부터 i개 만큼 문자열단위와 똑같으면 증가
+            }
+           
+            else{
+            
+                if(cnt == 1){//다르면 그대로 붙임
+                    result += tmp;
+                }
+             
+                else{//1보다 크면 result에 이어줌
+                    result += (to_string(cnt) + tmp);
+                }
+
+                tmp = s.substr(j, i);
+                cnt = 1;
+            }
+        }      
+        if((len%i)!=0){//문자열이 i로 안나눠지면 result에 나머지 부분 붙이기
+        result += s.substr((len/i) * i); 
+        }
+        
+         if (answer > result.size()) answer = result.size();
+        //최솟값저장
+    }
+    return answer;
+}
