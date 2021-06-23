@@ -3,7 +3,25 @@
 //남아있는 수 중 3은 소수이므로 3을 제외한 3의 배수를 모두 지움
 //남아있는 수 중 5를 제외한 5의 배수를 모두 지움
 //남아있는 수 중 7을 제외한 7의 배수를 모두 지움
+/*
+int number = 100000;
+int a[100001];
 
+void primeNumberSieve(){
+    for(int i=2li<=numver;i++){
+        a[i]=i;
+    }
+    for(int i=2;i<=number;i++){
+        if(a[i]==0) continue;
+        for(int j= i+i;j<=number;j+=i){
+            a[j] = 0;
+        }
+    }
+    for(int i =2;i<=number;i++){
+        if(a[i] !=0) cout<< a[i];
+}
+
+*/
 
 #include <vector>
 #include <iostream>
@@ -12,13 +30,14 @@ using namespace std;
 
 int solution(vector<int> nums) {//에라토스테네스의 체 이용
     int answer=0;
-    bool prime[3000]={false, };
+    
+    bool prime[3000]={0, };//모든 값들을 0으로 만들어 놓음
     for(int i = 2; i <= 3000; i++){
 	if(prime[i] == 1) 
-        continue;
+        continue;//이미 검사했다면 그냥 넘어감
 	for (int j = 2*i; j<=3000; j+=i)
     {
-		prime[j] = 1; 
+		prime[j] = 1; //검사하지 않은 배수라면 1로 만들어줌
        
 	}
 }
