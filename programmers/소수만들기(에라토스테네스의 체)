@@ -1,0 +1,37 @@
+//에라토스테네스의 체란
+//2는 소수이므로 2를 제외한 2의 배수를 모두 지움
+//남아있는 수 중 3은 소수이므로 3을 제외한 3의 배수를 모두 지움
+//남아있는 수 중 5를 제외한 5의 배수를 모두 지움
+//남아있는 수 중 7을 제외한 7의 배수를 모두 지움
+
+
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int solution(vector<int> nums) {//에라토스테네스의 체 이용
+    int answer=0;
+    bool prime[3000]={false, };
+    for(int i = 2; i <= 3000; i++){
+	if(prime[i] == 1) 
+        continue;
+	for (int j = 2*i; j<=3000; j+=i)
+    {
+		prime[j] = 1; 
+       
+	}
+}
+
+     sort(nums.begin(), nums.end());
+    
+    for(int i = 0; i < nums.size(); i++){
+        for(int j = i + 1; j < nums.size(); j++){
+            for(int k = j + 1; k < nums.size(); k++){
+                if(prime[nums[i] + nums[j] + nums[k]] == false)
+                    answer++;
+     }
+  }
+}
+    return answer;
+}
