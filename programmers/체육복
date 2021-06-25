@@ -1,0 +1,34 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, vector<int> lost, vector<int> reserve) {
+    int answer = 0;
+    //전체학생은 체육복을 한벌씩 가지고 있음
+    vector<int> student(n,1);
+     // 여벌 체육복 있는애들은 체육복을 하나씩 더가지고 있음
+    for(int i=0;i<reserve.size();i++){
+        student[reserve[i]-1]++;
+    }
+     //도난당한 애들은 체육복 하나씩 적음
+    for(int i=0;i<lost.size();i++){
+        student[lost[i]-1]--;
+    }
+    // 체육복이 0개인애
+    // 체육복이 1개인애
+    // 체육복이 2개인애로 나뉨
+    // 0개인 애들은 양옆에 살펴서 2개인 애가 있으면 체육복을 받음
+    for(int i=0;i<n;i++){
+       if(i > 0 && student[i] == 0 && student[i-1] == 2){
+            student[i-1]--; student[i]++;
+        }
+        if(i < n-1 && student[i] == 0 && student[i+1] == 2){
+            student[i+1]--; student[i]++;
+        }      
+    }
+    for(int elem: student){
+        if(elem>0) answer++;
+    }
+    return answer;
+}
