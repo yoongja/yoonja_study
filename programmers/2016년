@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+string solution(int a, int b) {
+    string answer = "";
+    int sum=0;
+    int month[13]={0,31,29,31,30,31,30,31,31,30,31,30,31};
+    string day[7]={"FRI","SAT","SUN","MON","TUE","WED","THU"};
+    for(int i=0;i<a;i++){
+        sum+=month[i];
+    }
+    sum+=(b-1);//밑에서 1을 빼게되면 0이 나왔을때 처리해주는 if써야돼서 불편
+    sum=sum%7;
+    answer=day[sum];
+    return answer;
+}
